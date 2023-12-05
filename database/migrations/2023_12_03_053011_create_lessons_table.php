@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('slug');
             $table->unsignedInteger('credit');
             $table->foreignId('teacher_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('day');
+            $table->unsignedInteger('time');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,10 @@ class LessonFactory extends Factory
             'name'=>$name,
             'slug'=>strtoupper(Str::slug($name,'_')),
             'credit'=>$this->faker->numberBetween(1,5),
-            'teacher_id'=>Teacher::inRandomOrder()->first()->id
+            'teacher_id'=>Teacher::inRandomOrder()->first()->id,
+            'user_id'=>User::inRandomOrder()->first()->id,
+            'day' => rand(1,6),
+            'time'=>rand(1,12)
         ];
     }
 }

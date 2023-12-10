@@ -27,8 +27,7 @@ class LessonListLayout extends Table
     {
         return [
             TD::make('name',"Название")->render(function ($lesson){
-                return Link::make($lesson)
-                    ->route('platform.lessons.view',['lesson'=>$lesson]);
+                return $lesson->name;
             }),
             TD::make('slug',"Slug")->render(function ($lesson){
                 return $lesson->slug;

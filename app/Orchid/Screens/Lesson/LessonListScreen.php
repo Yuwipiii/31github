@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Orchid\Screens\Setting;
+namespace App\Orchid\Screens\Lesson;
 
+use App\Models\Lesson;
+use App\Orchid\Layouts\Lesson\LessonListLayout;
 use Orchid\Screen\Screen;
 
-class LessonCreateSreen extends Screen
+class LessonListScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -13,7 +15,9 @@ class LessonCreateSreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'lessons'=>Lesson::all()
+        ];
     }
 
     /**
@@ -23,7 +27,7 @@ class LessonCreateSreen extends Screen
      */
     public function name(): ?string
     {
-        return 'LessonCreateSreen';
+        return 'LessonListScreen';
     }
 
     /**
@@ -43,6 +47,8 @@ class LessonCreateSreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            LessonListLayout::class
+        ];
     }
 }

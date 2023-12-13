@@ -87,5 +87,8 @@ Route::screen('roles', RoleListScreen::class)
 //Lesson
 Route::screen('lessons',\App\Orchid\Screens\Lesson\LessonListScreen::class)
 ->name('platform.systems.lessons');
+Route::screen('lessons/{lesson}',\App\Orchid\Screens\Lesson\LessonViewScreen::class)
+->name('platform.systems.lesson');
+
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

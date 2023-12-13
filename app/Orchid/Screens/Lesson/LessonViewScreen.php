@@ -2,18 +2,23 @@
 
 namespace App\Orchid\Screens\Lesson;
 
+use App\Models\Lesson;
 use Orchid\Screen\Screen;
 
 class LessonViewScreen extends Screen
 {
+    private Lesson $lesson ;
     /**
      * Fetch data to be displayed on the screen.
      *
      * @return array
      */
-    public function query(): iterable
+    public function query(Lesson $lesson): iterable
     {
-        return [];
+        $this->lesson = $lesson;
+        return [
+            'lesson'=>$lesson
+        ];
     }
 
     /**

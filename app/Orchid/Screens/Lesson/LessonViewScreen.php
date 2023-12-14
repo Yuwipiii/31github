@@ -3,7 +3,9 @@
 namespace App\Orchid\Screens\Lesson;
 
 use App\Models\Lesson;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\TD;
 
 class LessonViewScreen extends Screen
 {
@@ -48,6 +50,19 @@ class LessonViewScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            TD::make('name',"Название")->render(function ($lesson){
+                return $lesson->name;
+            }),
+            TD::make('slug',"Slug")->render(function ($lesson){
+                return $lesson->slug;
+            }),
+            TD::make('credit','Кредит')->render(function ($lesson){
+                return $lesson->credit;
+            }),
+            TD::make('teacher','Учитель')->render(function ($lesson){
+                return $lesson->teacher->name;
+            })
+        ];
     }
 }

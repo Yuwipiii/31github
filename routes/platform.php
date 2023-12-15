@@ -91,4 +91,5 @@ Route::screen('lessons/{lesson}',\App\Orchid\Screens\Lesson\LessonViewScreen::cl
 ->name('platform.systems.lesson');
 
 
+
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

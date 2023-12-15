@@ -3,9 +3,14 @@
 namespace App\Orchid\Screens\Lesson;
 
 use App\Models\Lesson;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Alert\Alert;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\TD;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class LessonViewScreen extends Screen
 {
@@ -40,7 +45,12 @@ class LessonViewScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Link::make(__('Изменить'))
+                ->icon('pencil'),
+            Button::make(__('Удалить'))->icon('trash')
+                ->method('delete', ['lesson' => $this->lesson->id])->confirm()
+        ];
     }
 
     /**
@@ -51,18 +61,24 @@ class LessonViewScreen extends Screen
     public function layout(): iterable
     {
         return [
-            TD::make('name',"Название")->render(function ($lesson){
-                return $lesson->name;
-            }),
-            TD::make('slug',"Slug")->render(function ($lesson){
-                return $lesson->slug;
-            }),
-            TD::make('credit','Кредит')->render(function ($lesson){
-                return $lesson->credit;
-            }),
-            TD::make('teacher','Учитель')->render(function ($lesson){
-                return $lesson->teacher->name;
-            })
+            Layout::legend('lesson', [
+                Sight::make(__('Название'))
+                    ->render(function ($lesson) {
+                        return $lesson->name;
+                    }),
+                Sight::make(__('Сокращение'))
+                    ->render(function ($lesson) {
+                        return $lesson->slug;
+                    }),
+            ])
         ];
+    }
+
+
+    public function delete(Request $request): RedirectResponse
+    {
+        $lesson= Lesson::find($request->lesson);
+        $lesson->delete() ? Alert::info(__('Вы успешно удалили урок')) : Alert::warning(__('Ошибка при удаление'));
+        return redirect()->route('platform.lessons.list');
     }
 }

@@ -89,6 +89,8 @@ Route::screen('lessons',\App\Orchid\Screens\Lesson\LessonListScreen::class)
 ->name('platform.systems.lessons');
 Route::screen('lessons/{lesson}',\App\Orchid\Screens\Lesson\LessonViewScreen::class)
 ->name('platform.systems.lesson');
+Route::screen('lesson/{lesson}/edit',\App\Orchid\Screens\Lesson\LessonEditScreen::class)
+    ->name('platform.systems.lesson.edit');
 
 
 

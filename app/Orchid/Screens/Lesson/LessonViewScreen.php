@@ -14,7 +14,8 @@ use Orchid\Support\Facades\Layout;
 
 class LessonViewScreen extends Screen
 {
-    private Lesson $lesson ;
+    private Lesson $lesson;
+
     /**
      * Fetch data to be displayed on the screen.
      *
@@ -24,7 +25,7 @@ class LessonViewScreen extends Screen
     {
         $this->lesson = $lesson;
         return [
-            'lesson'=>$lesson
+            'lesson' => $lesson
         ];
     }
 
@@ -47,7 +48,8 @@ class LessonViewScreen extends Screen
     {
         return [
             Link::make(__('Изменить'))
-                ->icon('pencil'),
+                ->icon('pencil')
+                ->route('platform.systems.lesson.edit',[$this->lesson]),
             Button::make(__('Удалить'))->icon('trash')
                 ->method('delete', ['lesson' => $this->lesson->id])->confirm()
         ];
@@ -70,6 +72,7 @@ class LessonViewScreen extends Screen
                     ->render(function ($lesson) {
                         return $lesson->slug;
                     }),
+
             ])
         ];
     }
@@ -77,7 +80,7 @@ class LessonViewScreen extends Screen
 
     public function delete(Request $request): RedirectResponse
     {
-        $lesson= Lesson::find($request->lesson);
+        $lesson = Lesson::find($request->lesson);
         $lesson->delete() ? Alert::info(__('Вы успешно удалили урок')) : Alert::warning(__('Ошибка при удаление'));
         return redirect()->route('platform.lessons.list');
     }

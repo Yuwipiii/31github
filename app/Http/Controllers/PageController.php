@@ -17,4 +17,9 @@ class PageController extends Controller
         $sunday = Lesson::where('day','=',7)->get();
         return view('index',compact('monday','thursday','tuesday','wednesday','friday','sunday','saturday'));
     }
+
+    public function show(Lesson $lesson)
+    {
+        return view('show',compact('lesson'));
+    }
 }

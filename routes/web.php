@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[\App\Http\Controllers\PageController::class,'index']);
-
+Route::get('/{lesson}/show',[\App\Http\Controllers\PageController::class,'show'])->name('show');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -85,6 +85,9 @@
                                 class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
                             <div class="margin-10px-top font-size14">{{$day->time}}</div>
                             <div class="font-size13 text-light-gray">{{$day->name}}</div>
+                            <a href="{{route('show',$day)}}">
+
+                            </a>
                         </td>
                 @endforeach
 

@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Lesson;
 
 use App\Models\Lesson;
+use Illuminate\Support\Facades\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
@@ -69,8 +70,11 @@ class LessonEditScreen extends Screen
         ];
     }
 
-    public function update()
+    public function update(Request $request,Lesson $lesson)
     {
+        $lesson->update($request->validate([
 
+        ]));
+        return redirect()->route('platform.systems.lessons');
     }
 }
